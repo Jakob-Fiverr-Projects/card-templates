@@ -4,11 +4,6 @@ const category = queryString.split("&")[0].split("=")[1];
 const name = queryString.split("&")[1].split("=")[1];
 const back_img = document.getElementById("back_img");
 const name_inp = document.getElementById("nameinp");
-const text_inp = document.getElementById("textinp");
-var nx = 0;
-var ny = 0;
-var tx = 0;
-var ty = 0;
 
 const canvas = document.getElementById("form_canvas");
 const ctx = canvas.getContext("2d");
@@ -30,10 +25,11 @@ function update_canvas() {
     ctx.drawImage(back_img, 0, 0, canvas.width, canvas.height);
     ctx.textAlign ="center"
     ctx.textBaseline = 'middle';   
-    ctx.font = "30px serif";
+    ctx.font = "50px serif";
+    if(current_lang == "arabic") {
+        ctx.font = "50px adobe-arabic"; 
+    }
     ctx.fillText(name_inp.value,covert_cord(categories[category][name]["name"]["x"]), covert_cord(categories[category][name]["name"]["y"]));
-    ctx.font = "20x serif";
-    ctx.fillText(text_inp.value,  covert_cord(categories[category][name]["text"]["x"]),  covert_cord(categories[category][name]["text"]["y"]));
 }
 
 function dlCanvas() {
