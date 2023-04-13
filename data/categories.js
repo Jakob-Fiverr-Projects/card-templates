@@ -1,1 +1,1 @@
-const categories = {"Graduation": {"Bachelor1": {"name": {"x": 400, "y": 300}}}}
+const categories = {"Graduation": {"Bachelor 1 English.png": {"name": {"x": 401, "y": 452}, "color": "#4c9300"}}}

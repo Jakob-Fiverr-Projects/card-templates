@@ -1,18 +1,14 @@
 var current_lang = "english"
 const queryString = window.location.search.split("?")[1];
 const category = queryString.split("&")[0].split("=")[1];
-const name = queryString.split("&")[1].split("=")[1];
+const name = queryString.split("&")[1].split("=")[1].replace(/%20/g, " ");
 const back_img = document.getElementById("back_img");
 const name_inp = document.getElementById("nameinp");
 
 const canvas = document.getElementById("form_canvas");
 const ctx = canvas.getContext("2d");
-
-function switch_lang(lan) {
-    current_lang = lan;
-    back_img.src="./data/categories/"+category+"/"+name+"/"+current_lang+".png";
-    back_img.onload = update_canvas
-}
+back_img.src= "data/categories/"+category+"/"+name
+back_img.onload = update_canvas
 
 function covert_cord(x) {
    return (canvas.clientWidth/ back_img.naturalWidth) * x
@@ -24,11 +20,11 @@ function update_canvas() {
     canvas.height = canvas.clientHeight;
     ctx.drawImage(back_img, 0, 0, canvas.width, canvas.height);
     ctx.textAlign ="center"
+    ctx.fillStyle = categories[category][name]["color"]
     ctx.textBaseline = 'middle';   
-    ctx.font = "50px serif";
-    if(current_lang == "arabic") {
-        ctx.font = "50px adobe-arabic"; 
-    }
+    ctx.font = "50px serif, adobe-arabic";
+
+    
     ctx.fillText(name_inp.value,covert_cord(categories[category][name]["name"]["x"]), covert_cord(categories[category][name]["name"]["y"]));
 }
 
@@ -40,6 +36,5 @@ function dlCanvas() {
   
     this.href = dt;
   };
-  document.getElementById("dl").addEventListener('click', dlCanvas, false);
-
-switch_lang("english")
+document.getElementById("dl").addEventListener('click', dlCanvas, false);
+update_canvas();
