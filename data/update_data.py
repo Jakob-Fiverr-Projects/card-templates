@@ -12,6 +12,7 @@ def get_img_dim(path):
         for y in range(im.size[1]):
             if pix[x,y][0] == 255 and pix[x,y][1] == 0 and pix[x,y][2] == 0:
                 return x, y, hex(pix[x+1,y][0]*256**2 +pix[x+1,y][1]*256 + pix[x+1,y][2])
+    print("       not found")
     return 0, 0, "000000"
     
 

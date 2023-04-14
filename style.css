@@ -5,13 +5,13 @@
 
 @font-face {
     font-family: "adobe-arabic";
-    src: url("./Adobe\ Arabic\ Regular.ttf");
+    src: url("./Adobe\ Arabic\ Regular.ttf") format('truetype');
  }
 
 * {
     padding: 0;
     margin: 0;
-    font-family: 'adobe-arabic, Open Sans';
+    font-family: 'Open Sans';
     font-weight: 400;
 }
 
