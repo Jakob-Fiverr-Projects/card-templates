@@ -1,0 +1,22 @@
+To create a new Template:
+1. Navigate to the data/categories/ folder
+2. Open the folder of the category the new Template should be created in
+3. Put the Image file here (png)
+4. Add a pixel of hex #ff0000 to the Image, at the place the name should appear
+5. Add another pixel next to that pixel (on the right). The Name will have the Color of this text
+6. run the update_data.py script
+7. Commit and Push to Github
+
+To add a new Category
+1. Navigate to the data/categories/ folder
+2. Create a new Folder with the Name of the Category
+3. Save a new Image file (PNG) called icon.png in this folder to set the icon for the category
+4. run the update_data.py script
+5. Commit and Push to Github
+
+To change the maximum input length.
+1. open the template.html file
+2. change the number at the end of line 36 (after maxlength=)
+3. Save the file
+4. Commit and Push to Github
+

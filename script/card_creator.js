@@ -1,6 +1,6 @@
 var current_lang = "english"
 const queryString = window.location.search.split("?")[1];
-const category = queryString.split("&")[0].split("=")[1];
+const category = queryString.split("&")[0].split("=")[1].replace(/%20/g, " ");
 const name = queryString.split("&")[1].split("=")[1].replace(/%20/g, " ");
 const back_img = document.getElementById("back_img");
 const name_inp = document.getElementById("nameinp");
@@ -31,9 +31,9 @@ function update_canvas() {
 function dlCanvas() {
     var dt = canvas.toDataURL('image/png');
     dt = dt.replace(/^data:image\/[^;]*/, 'data:application/octet-stream');
-
-    dt = dt.replace(/^data:application\/octet-stream/, 'data:application/octet-stream;headers=Content-Disposition%3A%20attachment%3B%20filename=Canvas.png');
-  
+	
+    dt = dt.replace(/^data:application\/octet-stream/, 'data:application/octet-stream;headers=Content-Disposition%3A%20attachment%3B%20filename='+name.split(".")[0]+'.png');
+	this.download = name.split(".")[0]+'.png';
     this.href = dt;
   };
 document.getElementById("dl").addEventListener('click', dlCanvas, false);
