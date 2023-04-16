@@ -22,7 +22,7 @@ function update_canvas() {
     ctx.textAlign ="center"
     ctx.fillStyle = categories[category][name]["color"]
     ctx.textBaseline = 'middle';   
-    ctx.font = "50px adobe-arabic";
+    ctx.font = canvas.width/14 + "px adobe-arabic";
     //ctx.font = "50px sans";
     
     ctx.fillText(name_inp.value,covert_cord(categories[category][name]["name"]["x"]), covert_cord(categories[category][name]["name"]["y"]));
