@@ -10,8 +10,8 @@ const context = canvas.getContext("2d");
 back_img.src= "data/categories/"+category+"/"+name
 back_img.onload = update_canvas
 
-function covert_cord(x) {
-   return (canvas.clientWidth/ back_img.naturalWidth) * x
+function covert_cord(x, can) {
+   return (can.width  * x)/ back_img.naturalWidth
 }
 
 
@@ -29,7 +29,7 @@ function update_can(can, ctx) {
     ctx.font = can.width/14 + "px adobe-arabic";
     //ctx.font = "50px sans";
     
-    ctx.fillText(name_inp.value,covert_cord(categories[category][name]["name"]["x"]), covert_cord(categories[category][name]["name"]["y"]));
+    ctx.fillText(name_inp.value,covert_cord(categories[category][name]["name"]["x"], can), covert_cord(categories[category][name]["name"]["y"], can));
 }
 
 function dlCanvas() {
