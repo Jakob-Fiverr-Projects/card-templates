@@ -6,7 +6,7 @@ const back_img = document.getElementById("back_img");
 const name_inp = document.getElementById("nameinp");
 
 const canvas = document.getElementById("form_canvas");
-const ctx = canvas.getContext("2d");
+const context = canvas.getContext("2d");
 back_img.src= "data/categories/"+category+"/"+name
 back_img.onload = update_canvas
 
@@ -18,23 +18,32 @@ function covert_cord(x) {
 function update_canvas() {
     canvas.width = canvas.clientWidth;
     canvas.height = canvas.clientHeight;
-    ctx.drawImage(back_img, 0, 0, canvas.width, canvas.height);
+    update_can(canvas, context)
+}
+
+function update_can(can, ctx) {
+    ctx.drawImage(back_img, 0, 0, can.width, can.height);
     ctx.textAlign ="center"
     ctx.fillStyle = categories[category][name]["color"]
     ctx.textBaseline = 'middle';   
-    ctx.font = canvas.width/14 + "px adobe-arabic";
+    ctx.font = can.width/14 + "px adobe-arabic";
     //ctx.font = "50px sans";
     
     ctx.fillText(name_inp.value,covert_cord(categories[category][name]["name"]["x"]), covert_cord(categories[category][name]["name"]["y"]));
 }
 
 function dlCanvas() {
-    var dt = canvas.toDataURL('image/png');
+    var cnv2 = document.createElement("canvas");
+    cnv2.width =  back_img.naturalWidth;
+    cnv2.height = back_img.naturalHeight;
+    update_can(cnv2, cnv2.getContext("2d"))
+    var dt = cnv2.toDataURL('image/png');
     dt = dt.replace(/^data:image\/[^;]*/, 'data:application/octet-stream');
 	
     dt = dt.replace(/^data:application\/octet-stream/, 'data:application/octet-stream;headers=Content-Disposition%3A%20attachment%3B%20filename='+name.split(".")[0]+'.png');
 	this.download = name.split(".")[0]+'.png';
     this.href = dt;
+    cnv2.remove();
   };
 document.getElementById("dl").addEventListener('click', dlCanvas, false);
 update_canvas();
